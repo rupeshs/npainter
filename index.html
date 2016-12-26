@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+ <meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css" >
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css"> 
+
+</head>
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><i class="fa fa-paint-brush" aria-hidden="true"></i> Npainter</a>
+        </div>
+     
+      </div>
+    </nav>
+
+    <!-- Begin page content -->
+    <div class="container">
+     
+   
+
+	<div class="wel" style="width:640px;">
+	
+	<div class="form-group row">
+  <label for="example-text-input" class="col-xs-4 col-form-label">Neurons per layer:</label>
+  <div class="col-xs-2">
+    <input class="form-control " type="text" value="16" id="nneurons">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="example-search-input" class="col-xs-4 col-form-label">Hidden layers :</label>
+  <div class="col-xs-2">
+    <input class="form-control" type="search" value="8" id="nhlayer">
+  </div>
+</div>
+
+	 <button class="btn btn-success"  id="startBtn" onclick="startPainting()"><i class="fa fa-paint-brush" aria-hidden="true"></i> Start Painting</button> 
+<button class="btn btn-danger"  id="stopBtn" onclick="stopPainting()"><i class="fa fa-ban" aria-hidden="true"></i> Stop</button>	
+
+<img id="paintanim"  src="img/painting.gif"></img><span class="label label-primary" id="duration"></span>
+	 </div>
+	 <center>
+<canvas id="nartCanvas" width="640" height="480" style="box-shadow: 0 0 3px #888;border: rgba(255,255,255,.23) solid 12px;;margin-top:15px;background-clip: padding-box;">
+Your browser does not support the HTML5 canvas tag.</canvas><br>
+	 </center>
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted"> ©2016 <a href="https://github.com/rupeshs">Rupesh Sreeraman</a></p>
+		</div>
+    </footer>
+
+  <script type="text/javascript" src="js/app.js"></script>
+  <!-- Latest compiled and minified CSS -->
+</div>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+</body>
+</html>
+

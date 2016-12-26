@@ -71,9 +71,8 @@ function downloadCanvas(link, canvasId, filename) {
     link.href = document.getElementById(canvasId).toDataURL();
     link.download = filename;
 }
-function downloadPainting()
-{
-	downloadCanvas(this, 'nartCanvas', 'neural-painting.png');
-}
-  
 
+  
+document.getElementById('download').addEventListener('click', function() {
+    downloadCanvas(this, 'nartCanvas', 'neural-painting.png');
+},  false);

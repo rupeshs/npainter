@@ -21,26 +21,27 @@
     <!-- Begin page content -->
     <div class="container">
     
-   
-	<div class="form-group row">
-  <label for="nneurons" class="col-xs-2 col-form-label">Neurons per layer:</label>
-  <div class="col-xs-2">
-    <input class="form-control" type="number" value="16" min="1" max="32" id="nneurons">
-  </div>
-</div>
-<div class="form-group row">
-  <label for="nhlayer" class="col-xs-2 col-form-label">Hidden layers :</label>
-  <div class="col-xs-2">
-    <input class="form-control" type="number" value="8" min="1" max="32" id="nhlayer">
-  </div>
-</div>
+   <form class="form-inline">
 
+	<div class="form-group"> 
+		<label for="nneurons"    class="control-label">Neurons per layer:</label>
+		 <input class="form-control"  type="number" value="16" min="1" max="32" id="nneurons">
+	</div>
+	<div class="form-group" style="margin:5px"> 
+	  <label for="nhlayer"   class="control-label">Hidden layers :</label>
+	  <input class="form-control" type="number" value="8" min="1" max="32" id="nhlayer">
+	</div>
+</form>		
+		
+ 	
+
+<div style="margin-top:10px;">
 	 <button class="btn btn-success"  id="startBtn" onclick="startPainting()"><i class="fa fa-paint-brush" aria-hidden="true"></i> Start Painting</button> 
 <button class="btn btn-danger"  id="stopBtn" onclick="stopPainting()"><i class="fa fa-ban" aria-hidden="true"></i> Stop</button>	
 	 <a class="btn btn-primary"  id="download" ><i class="fa fa-download" aria-hidden="true"></i> </a> 
 <img id="paintanim"  src="img/painting.gif"></img><span class="label label-primary" id="duration"></span>
 	 
-
+</div>
 
 	 <center>
 <canvas id="nartCanvas" width="640" height="480" style="box-shadow: 0 0 3px #888;border: rgba(255,255,255,.23) solid 12px;;margin-top:15px;background-clip: padding-box;">

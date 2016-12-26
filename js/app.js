@@ -68,7 +68,7 @@ painterWorker.terminate();
 }
 
 function downloadCanvas(link, canvasId, filename) {
-    link.href = document.getElementById(canvasId).toDataURL();
+    link.href = document.getElementById(canvasId).toDataURL('image/png');
     link.download = filename;
 }
 

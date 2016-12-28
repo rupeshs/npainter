@@ -8,12 +8,12 @@ var G ;
 var modl;
 var width,height;
 var imageData;
-
-
+var nonlinfn;
+var strokestrenth;
 var initModel = function() {
 	
   importScripts("recurrent.js");
-  G= new R.Graph(false);
+  G= new R.Graph(false,strokestrenth);
   var model = [];
   var i;
 
@@ -40,11 +40,49 @@ var forwardNetwork = function(G, model, x_, y_) {
   x.set(2, 0, 1.0); // bias.
   var out;
 
-  out = G.tanh(G.mul(model.w_in, x));
+switch (nonlinfn) {
+  case "tanh":
+       out = G.tanh(G.mul(model.w_in, x));
 
   for (i = 0; i < nHidden; i++) {
     out = G.tanh(G.mul(model['w_'+i], out));
   }
+    break;
+  case "tanhabs":
+     out = G.tanh_abs(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.tanh_abs(G.mul(model['w_'+i], out));
+  }
+    break;
+  case "logfn":
+     out = G.logfn(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.logfn(G.mul(model['w_'+i], out));
+  }
+    break;
+	case "logfnex":
+     out = G.logfnex(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.logfnex(G.mul(model['w_'+i], out));
+  }
+    break;
+case "squar":
+     out = G.squar(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.squar(G.mul(model['w_'+i], out));
+  }
+    break;
+case "inv":
+     out = G.inv(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.inv(G.mul(model['w_'+i], out));
+  }
+    break;	
+  default:
+    console.log(nonlinfn +" This non linearity function not implemented yet.");
+}
+
+  
 
   out = G.sigmoid(G.mul(model.w_out, out));
   return out;
@@ -75,8 +113,9 @@ function setPixel(imageData, x, y, r, g, b, a) {
     imageData.data[index+2] = b;
     imageData.data[index+3] = a;
 }
-function neuralPaint(height,width)
+function neuralPaint(height,width,nnlinfn)
 {
+nonlinfn=nnlinfn;
 modl =initModel();
 var t0 = performance.now();
 for (var y = 0; y < height; y++) {
@@ -96,13 +135,15 @@ postMessage({status: "finished",etime: elTime});
 }
 
 onmessage = function( event ){
-     
+     nonlinfn='tanh';
 	switch(event.data.op){
         case "start":
 			imageData=event.data.imgdata;
 			networkSize=event.data.netsz;
+			nonlinfn=event.data.nlfun;
 			nHidden=event.data.hidsz;
-			neuralPaint(event.data.h,event.data.w);
+			strokestrenth=event.data.strokestrenth;
+			neuralPaint(event.data.h,event.data.w,nonlinfn);
             break;
         case "stop":
             break;

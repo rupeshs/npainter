@@ -37,7 +37,7 @@ var forwardNetwork = function(G, model, x_, y_) {
   var i;
   x.set(0, 0, x_);
   x.set(1, 0, y_);
-  x.set(2, 0, 1.0); // bias.
+  x.set(2, 0, 1); // bias.
   var out;
 
 switch (nonlinfn) {
@@ -78,12 +78,21 @@ case "inv":
     out = G.inv(G.mul(model['w_'+i], out));
   }
     break;	
+case "xlogxsq":
+     out = G.xlogxsq(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.xlogxsq(G.mul(model['w_'+i], out));
+  }
+    break;
+case "invxlogx":
+     out = G.invxlogx(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.invxlogx(G.mul(model['w_'+i], out));
+  }
+    break;		
   default:
     console.log(nonlinfn +" This non linearity function not implemented yet.");
 }
-
-  
-
   out = G.sigmoid(G.mul(model.w_out, out));
   return out;
 };

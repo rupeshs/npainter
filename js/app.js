@@ -44,6 +44,19 @@ $(document).ready(function(){
   $('#nhlayer').val(2);
 
   break;
+  case "xlogxsq":
+  $('#nneurons').val(6);
+  $('#nhlayer').val(8);
+  $("#sstrenth").val('8');
+   $('#sstrenth').prop('disabled', false);
+  break;
+  case "invxlogx":
+  $('#nneurons').val(9);
+  $('#nhlayer').val(2);
+  $("#sstrenth").val('3');
+   $('#sstrenth').prop('disabled', false);
+  break;
+  
   }
   
     }
@@ -73,7 +86,7 @@ $("#paintanim").show( "slide", { direction: "left" },250 );
 		painterWorker.terminate();
 	}
 	var sstren=$('#sstrenth').val();
-	
+	console.log(stylefn);
   $('#startBtn').prop('disabled', true);
   $('#stopBtn').prop('disabled', false);
     var networksize = $('#nneurons').val();

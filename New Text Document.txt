@@ -1,15 +1,10 @@
-tanh 16,8
-tanhabs 20,8
-T.log(abs(x) + eps 4,2
-out.w[i] = Math.log(Math.abs(m.w[i])+1e-1); 4,2 strong pattern
-out.w[i] = Math.log10(Math.abs(m.w[i])+1e-8);
-out.w[i] = Math.log(Math.abs(m.w[i])+1e-1);4,4
-out.w[i] = Math.log10(Math.abs(1/m.w[i])+1e-10); 4,2
+tanh
+tanh_abs
 
+log
+log_ex
 
+square
+inverse
 
-out.w[i] = Math.log10(Math.abs(m.w[i])+1e-2
-edge intensity
- 1 e-1 low
- 2 e-8 hight 7,1/m 10,1
- 
+7,6,8

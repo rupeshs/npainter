@@ -19,6 +19,7 @@ var R = {}; // the Recurrent library
   var return_v = false;
   var v_val = 0.0;
   var sstrength=1e-10;
+  var afactor=0;
   var gaussRandom = function() {
     if(return_v) { 
       return_v = false;
@@ -107,6 +108,7 @@ var R = {}; // the Recurrent library
   // Transformer definitions
   var Graph = function(needs_backprop,strokestrenth) {
      sstrength=Math.pow(10, -strokestrenth);
+	 afactor=strokestrenth;
 	 console.log(sstrength);
     if(typeof needs_backprop === 'undefined') { needs_backprop = true; }
     this.needs_backprop = needs_backprop;
@@ -137,12 +139,54 @@ var R = {}; // the Recurrent library
       }
       return out;
     },
-	logfnex: function(m) {
-      // tanh abs nonlinearity
+	xlogxsq: function(m) {
+      // log fn nonlinearity
       var out = new Mat(m.n, m.d);
       var n = m.w.length;
       for(var i=0;i<n;i++) { 
-        out.w[i] = Math.log10(Math.abs(m.w[i])+sstrength);
+       out.w[i] = m.w[i]*Math.log10(Math.abs(m.w[i]*m.w[i])+sstrength);
+      }
+
+      if(this.needs_backprop) {
+        var backward = function() {
+          for(var i=0;i<n;i++) {
+            // grad for z = tanh(x) is (1 - z^2)
+            var mwi = out.w[i];
+            m.dw[i] += (1.0 - mwi * mwi) * out.dw[i];
+          }
+        }
+        this.backprop.push(backward);
+      }
+      return out;
+    },
+	logfnex: function(m) {
+      // log fn nonlinearity
+      var out = new Mat(m.n, m.d);
+      var n = m.w.length;
+      for(var i=0;i<n;i++) { 
+	   out.w[i] = Math.log10(Math.abs(m.w[i])+sstrength);
+	  
+      }
+
+      if(this.needs_backprop) {
+        var backward = function() {
+          for(var i=0;i<n;i++) {
+            // grad for z = tanh(x) is (1 - z^2)
+            var mwi = out.w[i];
+            m.dw[i] += (1.0 - mwi * mwi) * out.dw[i];
+          }
+        }
+        this.backprop.push(backward);
+      }
+      return out;
+    },
+	invxlogx: function(m) {
+      // log fn nonlinearity
+      var out = new Mat(m.n, m.d);
+      var n = m.w.length;
+      for(var i=0;i<n;i++) { 
+	   //out.w[i] = Math.log(Math.abs(m.w[i])+(1-(afactor/10)));
+	   out.w[i] = Math.abs(1/Math.abs(m.w[i]))*m.w[i]*Math.log(Math.abs(m.w[i])+9e-1);
       }
 
       if(this.needs_backprop) {
@@ -178,14 +222,16 @@ var R = {}; // the Recurrent library
       return out;
     },
 	inv: function(m) {
-      // tanh abs nonlinearity
+      // inverse nonlinearity
       var out = new Mat(m.n, m.d);
       var n = m.w.length;
       for(var i=0;i<n;i++) { 
 		out.w[i] = m.w[i]*Math.abs(1/m.w[i])
+		
       }
 
       if(this.needs_backprop) {
+	  
         var backward = function() {
           for(var i=0;i<n;i++) {
             // grad for z = tanh(x) is (1 - z^2)
@@ -198,7 +244,7 @@ var R = {}; // the Recurrent library
       return out;
     },
 	logfn: function(m) {
-      // tanh abs nonlinearity
+      // log nonlinearity
       var out = new Mat(m.n, m.d);
       var n = m.w.length;
       for(var i=0;i<n;i++) { 

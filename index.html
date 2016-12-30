@@ -1,123 +1,111 @@
 <!DOCTYPE html>
 <html>
-	
 <head>
- <title>Npainter | Neural painting in browser </title>
- <meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 	
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">=
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css"> 
-<link rel="stylesheet" href="css/main.css" >
-<link rel="stylesheet" href="css/image-picker.css" >
 
+	<title>Npainter | Neural painting in browser </title>
+	<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">=
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/image-picker.css">
 </head>
+
 <body>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#"><i class="fa fa-paint-brush" aria-hidden="true"></i> Npainter</a>
-        </div>
-     
-      </div>
-    </nav>
-
-    <!-- Begin page content -->
-    <div class="container">
-    <div class="well">
-   <form class="form-inline">
-
-	<div class="form-group"> 
-		<label for="nneurons"    class="control-label">Neurons per layer:</label>
-		 <input class="form-control"  type="number" value="16" min="1" max="32" id="nneurons">
-	</div>
-	<div class="form-group" style="margin:5px"> 
-	  <label for="nhlayer"   class="control-label">Hidden layers :</label>
-	  <input class="form-control" type="number" value="8" min="1" max="32" id="nhlayer">
-	</div>
-	<div class="form-group" style="margin:5px">
-  <label for="sstrenth">Stroke strength:</label>
-  <select class="form-control" id="sstrenth">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#"><i class="fa fa-paint-brush" aria-hidden="true"></i> Npainter</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="well">
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="nneurons" class="control-label">Neurons per layer:</label>
+					<input class="form-control" type="number" value="10" min="1" max="32" id="nneurons">
+				</div>
+				<div class="form-group" style="margin:5px">
+<label for="nhlayer" class="control-label">Hidden layers :</label>
+<input class="form-control" type="number" value="1" min="1" max="32" id="nhlayer">
+</div>
+<div class="form-group" style="margin:5px">
+<label for="sstrenth">Stroke strength:</label>
+<select class="form-control" id="strength">
     <option value='1'>1</option>
     <option value='2'>2</option>
     <option value='3'>3</option>
     <option value='4'>4</option>
-	<option value='5'>5</option>
-	<option value='6'>6</option>
-	<option value='7'>7</option>
-	<option value='8'>8</option>
-	<option value='9'>9</option>
-	<option value='10'>10</option>
+	  <option value='5'>5</option>
+	  <option value='6'>6</option>
+	  <option value='7'>7</option>
+	  <option value='8'>8</option>
+	  <option value='9'>9</option>
+	  <option value='10'>10</option>
   </select>
-  </div>
-</form>	
-    <b>Select style:</b>
-	<div style="margin-top:10px;">
-	
-	<select id="styleselect"  class="image-picker show-html" >
+</div>
+</form>
+<b>Select style:</b>
+<div style="margin-top:10px;">
+
+<select id="styleselect" class="image-picker show-html">
 	<option data-img-src='img/logfnex.png' value='logfnex'></option>
 	<option data-img-src='img/logfn.png' value='logfn'></option>
 	<option data-img-src='img/tanh.png' value='tanh'></option>
 	<option data-img-src='img/logxp1.png' value='logxp1'></option>
 	<option data-img-src='img/tanhabs.png' value='tanhabs'></option>
 	<option data-img-src='img/squar.png' value='squar'></option>
-    <option data-img-src='img/inv.png' value='inv'></option>
+  <option data-img-src='img/inv.png' value='inv'></option>
 	<option data-img-src='img/xlogxsq.png' value='xlogxsq'></option>
 	<option data-img-src='img/invxlogx.png' value='invxlogx'></option>
 	<option data-img-src='img/logx1.png' value='logx1'></option>
-	
 	<option data-img-src='img/tanhlog.png' value='tanhlog'></option>
 	<option data-img-src='img/invlogxp1.png' value='invlogxp1'></option>
 	</select>
-	</div>
-	<div style="margin-top:5px;">
-	 <button class="btn btn-success"  id="startBtn" onclick="startPainting()"><i class="fa fa-paint-brush" aria-hidden="true"></i> Start Painting</button> 
-<button class="btn btn-danger"  id="stopBtn" onclick="stopPainting()"><i class="fa fa-ban" aria-hidden="true"></i> Stop</button>	
-	 <a class="btn btn-primary"  id="download" ><i class="fa fa-download" aria-hidden="true"></i> </a> 
-<img id="paintanim"  src="img/painting.gif"></img><span class="label label-primary" id="duration"></span>
-	 
 </div>
-	</div>
+<div style="margin-top:5px;">
+<button class="btn btn-success" disabled=true id="startBtn" onclick="startPainting()"><i class="fa fa-paint-brush" aria-hidden="true"></i> Start Painting</button>
+<button class="btn btn-danger"  disabled=true id="stopBtn" onclick="stopPainting()"><i class="fa fa-ban" aria-hidden="true"></i> Stop</button>
+<a class="btn btn-primary" id="download"><i class="fa fa-download" aria-hidden="true"></i> </a>
+<img id="paintanim" src="img/painting.gif"></img><span class="label label-primary" id="duration"></span>
 
+</div>
+</div>
+<center>
+	<canvas id="nartCanvas" width="640" height="480" style="box-shadow: 0 0 8px #888;border: rgba(255,255,255,.23) solid 12px;;margin-top:15px;background-clip: padding-box;"> Your browser does not support the HTML5 canvas tag.</canvas><br>
 
-	 <center>
-<canvas id="nartCanvas" width="640" height="480" style="box-shadow: 0 0 8px #888;border: rgba(255,255,255,.23) solid 12px;;margin-top:15px;background-clip: padding-box;">
-Your browser does not support the HTML5 canvas tag.</canvas><br>
-	
-	</center>
- <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Frupeshs.github.io%2Fnpainter%2F&width=300px&layout=standard&action=like&size=small&show_faces=false&share=false&height=35&appId=1499988016887461" width="300px" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-    </div>
-	
-
+</center>
+<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Frupeshs.github.io%2Fnpainter%2F&width=300px&layout=standard&action=like&size=small&show_faces=false&share=false&height=35&appId=1499988016887461"
+	width="300px" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+</div>
 <footer class="footer">
-	
-      <div class="container">
-        <p class="text-muted"> ©2016 <a href="https://github.com/rupeshs">Rupesh Sreeraman</a>
-			
-			</p>
-		
-		</div>
-    </footer>
+	<div class="container">
+		<p class="text-muted"> ©2016 <a href="https://github.com/rupeshs">Rupesh Sreeraman</a></p>
+	</div>
+</footer>
 
-</div>  
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
 <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <script src="js/image-picker.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+																											(function (i, s, o, g, r, a, m) {
+																											i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+																												(i[r].q = i[r].q || []).push(arguments)
+																											}, i[r].l = 1 * new Date(); a = s.createElement(o),
+																												m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+																											})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-20629378-13', 'auto');
-  ga('send', 'pageview');
+																											ga('create', 'UA-20629378-13', 'auto');
+																											ga('send', 'pageview');
 
 </script>
 </body>
-</html>
 
+</html>

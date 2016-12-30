@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Npainter | Neural painting in browser </title>
+	<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">=
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/lightgallery.css">
+
+	<style>
+	.paintings-gallery > ul {
+              margin-bottom: 0;
+            }
+            .paintings-gallery > ul > li {
+                float: left;
+                 margin:10px;
+                width: 120px;
+            }
+            .paintings-gallery > ul > li a {
+              border: 5px solid #FFF;
+			  box-shadow: 0 0 3px #888;
+              border-radius: 3px;
+              display: block;
+              overflow: hidden;
+              position: relative;
+              float: left;
+            }
+            .paintings-gallery > ul > li a > img {
+              -webkit-transition: -webkit-transform 0.15s ease 0s;
+              -moz-transition: -moz-transform 0.15s ease 0s;
+              -o-transition: -o-transform 0.15s ease 0s;
+              transition: transform 0.15s ease 0s;
+              -webkit-transform: scale3d(1, 1, 1);
+              transform: scale3d(1, 1, 1);
+              height: 100%;
+              width: 100%;
+            }
+            .paintings-gallery > ul > li a:hover > img {
+              -webkit-transform: scale3d(1.1, 1.1, 1.1);
+              transform: scale3d(1.1, 1.1, 1.1);
+            }
+            .paintings-gallery > ul > li a:hover .paintings-gallery-poster > img {
+              opacity: 1;
+            }
+            .paintings-gallery > ul > li a .paintings-gallery-poster {
+              background-color: rgba(0, 0, 0, 0.1);
+              bottom: 0;
+              left: 0;
+              position: absolute;
+              right: 0;
+              top: 0;
+              -webkit-transition: background-color 0.15s ease 0s;
+              -o-transition: background-color 0.15s ease 0s;
+              transition: background-color 0.15s ease 0s;
+            }
+            .paintings-gallery > ul > li a .paintings-gallery-poster > img {
+              left: 50%;
+              margin-left: -5px;
+              margin-top: -5px;
+              opacity: 0;
+              position: absolute;
+              top: 50%;
+              -webkit-transition: opacity 0.3s ease 0s;
+              -o-transition: opacity 0.3s ease 0s;
+              transition: opacity 0.3s ease 0s;
+            }
+            .paintings-gallery > ul > li a:hover .paintings-gallery-poster {
+              background-color: rgba(0, 0, 0, 0.5);
+            }
+            .paintings-gallery .justified-gallery > a > img {
+              -webkit-transition: -webkit-transform 0.15s ease 0s;
+              -moz-transition: -moz-transform 0.15s ease 0s;
+              -o-transition: -o-transform 0.15s ease 0s;
+              transition: transform 0.15s ease 0s;
+              -webkit-transform: scale3d(1, 1, 1);
+              transform: scale3d(1, 1, 1);
+              height: 100%;
+              width: 100%;
+            }
+            .paintings-gallery .justified-gallery > a:hover > img {
+              -webkit-transform: scale3d(1.1, 1.1, 1.1);
+              transform: scale3d(1.1, 1.1, 1.1);
+            }
+            .paintings-gallery .justified-gallery > a:hover .paintings-gallery-poster > img {
+              opacity: 1;
+            }
+            .paintings-gallery .justified-gallery > a .paintings-gallery-poster {
+              background-color: rgba(0, 0, 0, 0.1);
+              bottom: 0;
+              left: 0;
+              position: absolute;
+              right: 0;
+              top: 0;
+              -webkit-transition: background-color 0.15s ease 0s;
+              -o-transition: background-color 0.15s ease 0s;
+              transition: background-color 0.15s ease 0s;
+            }
+            .paintings-gallery .justified-gallery > a .paintings-gallery-poster > img {
+              left: 50%;
+              margin-left: -10px;
+              margin-top: -10px;
+              opacity: 0;
+              position: absolute;
+              top: 50%;
+              -webkit-transition: opacity 0.3s ease 0s;
+              -o-transition: opacity 0.3s ease 0s;
+              transition: opacity 0.3s ease 0s;
+            }
+            .paintings-gallery .justified-gallery > a:hover .paintings-gallery-poster {
+              background-color: rgba(0, 0, 0, 0.5);
+            }
+            .paintings-gallery .video .paintings-gallery-poster img {
+              height: 48px;
+              margin-left: -24px;
+              margin-top: -24px;
+              opacity: 0.8;
+              width: 48px;
+            }
+            .paintings-gallery.dark > ul > li a {
+              border: 3px solid #04070a;
+            }
+            .home .paintings-gallery {
+              padding-bottom: 80px;
+            }
+        </style>
+</head>
+
+<body>
+	<!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+         <a class="navbar-brand" href="index.html"><i class="fa fa-paint-brush" aria-hidden="true"></i> Npainter</a></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="gallery.html">Gallery</a></li>
+            
+           
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	<div class="container">
+  <h3>Some cool paintings/patterns by neural networks</h3>
+	     <div class="paintings-gallery">
+            <ul id="lightgallery" class="list-unstyled row">
+                <li  data-src="img/gal/tanh.png" data-sub-html="<h4>Tanh</h4>">
+                    <a href="">
+                        <img src="img/gal/tanh_thumb.png">
+                    </a>
+                </li>
+                <li  data-src="img/gal/logx.png" data-sub-html="<h4>Logx</h4>">
+                    <a href="">
+                        <img  src="img/gal/logx_thumb.png">
+                    </a>
+                </li>
+                <li   data-src="img/gal/logxp1.png" data-sub-html="<h4>Logx+P1</h4>">
+                    <a href="">
+                        <img  src="img/gal/logxp1_thumb.png">
+                    </a>
+                </li>
+                <li   data-src="img/gal/tanhabs.png" data-sub-html="<h4>Tanh_abs</h4>">
+                    <a href="">
+                        <img src="img/gal/tanhabs_thumb.png">
+                    </a>
+                </li>
+				<li  data-src="img/gal/square.png" data-sub-html="<h4>square</h4>">
+                    <a href="">
+                        <img  src="img/gal/square_thumb.png">
+                    </a>
+                </li>
+				
+				<li   data-src="img/gal/invxlogx.png" data-sub-html="<h4>invxlogx</h4>">
+                    <a href="">
+                        <img  src="img/gal/invxlogx_thumb.png">
+                    </a>
+                </li>
+				<li   data-src="img/gal/xlogxsq.png" data-sub-html="<h4>xlogx_square</h4>">
+                    <a href="">
+                        <img  src="img/gal/xlogxsq_thumb.png">
+                    </a>
+                </li>
+				<li   data-src="img/gal/invlogx.png" data-sub-html="<h4>invlogx</h4>">
+                    <a href="">
+                        <img  src="img/gal/invlogx_thumb.png">
+                    </a>
+                </li>
+				<li   data-src="img/gal/tanhlogx.png" data-sub-html="<h4>tanhlogx</h4>">
+                    <a href="">
+                        <img  src="img/gal/tanhlogx_thumb.png">
+                    </a>
+                </li>
+				<li   data-src="img/gal/inv.png" data-sub-html="<h4>inverse</h4>">
+                    <a href="">
+                        <img  src="img/gal/inv_thumb.png">
+                    </a>
+                </li>
+				<li   data-src="img/gal/logx1.png" data-sub-html="<h4>logx+1</h4>">
+                    <a href="">
+                        <img  src="img/gal/logx1_thumb.png">
+                    </a>
+                </li>
+				<li   data-src="img/gal/invlogxp1.png" data-sub-html="<h4>invlogx+p1</h4>">
+                    <a href="">
+                        <img  src="img/gal/invlogxp1_thumb.png">
+                    </a>
+                </li>
+				
+            </ul>
+        </div>
+        
+</div>
+<footer class="footer">
+	<div class="container">
+		<p class="text-muted">(c)2016 <a href="https://github.com/rupeshs">Rupesh Sreeraman</a></p>
+	</div>
+</footer>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
+        <script src="js/lightgallery.js"></script>
+        <script src="js/lg-fullscreen.js"></script>
+        <script src="js/lg-thumbnail.js"></script>
+        <script src="js/lg-video.js"></script>
+        <script src="js/lg-autoplay.js"></script>
+        <script src="js/lg-zoom.js"></script>
+        <script src="js/lg-hash.js"></script>
+        <script src="js/lg-pager.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('#lightgallery').lightGallery();
+        });
+        </script>		
+<script>
+	(function (i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date(); a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+	ga('create', 'UA-20629378-13', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

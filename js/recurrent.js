@@ -180,13 +180,95 @@ var R = {}; // the Recurrent library
       }
       return out;
     },
-	invxlogx: function(m) {
-      // log fn nonlinearity
+	logxp1: function(m) {
+      // logx+0.1 fn nonlinearity
       var out = new Mat(m.n, m.d);
       var n = m.w.length;
       for(var i=0;i<n;i++) { 
+	  // out.w[i] = Math.log(Math.abs(m.w[i])+1);
 	   //out.w[i] = Math.log(Math.abs(m.w[i])+(1-(afactor/10)));
-	   out.w[i] = Math.abs(1/Math.abs(m.w[i]))*m.w[i]*Math.log(Math.abs(m.w[i])+9e-1);
+	    out.w[i] = Math.log(Math.abs(m.w[i])+0.1);
+      }
+
+      if(this.needs_backprop) {
+        var backward = function() {
+          for(var i=0;i<n;i++) {
+            // grad for z = tanh(x) is (1 - z^2)
+            var mwi = out.w[i];
+            m.dw[i] += (1.0 - mwi * mwi) * out.dw[i];
+          }
+        }
+        this.backprop.push(backward);
+      }
+      return out;
+    },
+	logx1: function(m) {
+      // logx+1 fn nonlinearity
+      var out = new Mat(m.n, m.d);
+      var n = m.w.length;
+      for(var i=0;i<n;i++) { 
+	   out.w[i] = Math.log(Math.abs(m.w[i])+1);
+      }
+
+      if(this.needs_backprop) {
+        var backward = function() {
+          for(var i=0;i<n;i++) {
+            // grad for z = tanh(x) is (1 - z^2)
+            var mwi = out.w[i];
+            m.dw[i] += (1.0 - mwi * mwi) * out.dw[i];
+          }
+        }
+        this.backprop.push(backward);
+      }
+      return out;
+    },
+	invlogxp1: function(m) {
+      // inv log fn nonlinearity
+      var out = new Mat(m.n, m.d);
+      var n = m.w.length;
+      for(var i=0;i<n;i++) { 
+	   out.w[i] = Math.abs(1/m.w[i])*m.w[i]*Math.log10(Math.abs(m.w[i])+1e-1);
+      }
+
+      if(this.needs_backprop) {
+        var backward = function() {
+          for(var i=0;i<n;i++) {
+            // grad for z = tanh(x) is (1 - z^2)
+            var mwi = out.w[i];
+            m.dw[i] += (1.0 - mwi * mwi) * out.dw[i];
+          }
+        }
+        this.backprop.push(backward);
+      }
+      return out;
+    },
+	tanhlog: function(m) {
+      // inv log fn nonlinearity
+      var out = new Mat(m.n, m.d);
+      var n = m.w.length;
+      for(var i=0;i<n;i++) { 
+	   out.w[i] = Math.abs(1/Math.tanh(m.w[i]))*m.w[i]*Math.log10(Math.abs(m.w[i])+8.5e-1);
+	   
+      }
+
+      if(this.needs_backprop) {
+        var backward = function() {
+          for(var i=0;i<n;i++) {
+            // grad for z = tanh(x) is (1 - z^2)
+            var mwi = out.w[i];
+            m.dw[i] += (1.0 - mwi * mwi) * out.dw[i];
+          }
+        }
+        this.backprop.push(backward);
+      }
+      return out;
+    },
+	invxlogx: function(m) {
+      // inv log fn nonlinearity
+      var out = new Mat(m.n, m.d);
+      var n = m.w.length;
+      for(var i=0;i<n;i++) { 
+	   out.w[i] = Math.abs(1/m.w[i])*m.w[i]*Math.log(Math.abs(m.w[i])+9e-1);
       }
 
       if(this.needs_backprop) {
@@ -202,7 +284,7 @@ var R = {}; // the Recurrent library
       return out;
     },
 	squar: function(m) {
-      // tanh abs nonlinearity
+      // squar nonlinearity
       var out = new Mat(m.n, m.d);
       var n = m.w.length;
       for(var i=0;i<n;i++) { 

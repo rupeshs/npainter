@@ -8,3 +8,6 @@ square
 inverse
 
 7,6,8
+
+  out.w[i] = Math.log(Math.abs(m.w[i])+strength);
+  

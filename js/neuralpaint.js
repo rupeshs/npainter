@@ -89,7 +89,31 @@ case "invxlogx":
   for (i = 0; i < nHidden; i++) {
     out = G.invxlogx(G.mul(model['w_'+i], out));
   }
-    break;		
+    break;
+case "logx1":
+     out = G.logx1(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.logx1(G.mul(model['w_'+i], out));
+  }
+    break;
+case "logxp1":
+     out = G.logxp1(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.logxp1(G.mul(model['w_'+i], out));
+  }
+    break;	
+case "tanhlog":
+     out = G.tanhlog(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.tanhlog(G.mul(model['w_'+i], out));
+  }
+    break;
+case "invlogxp1":
+     out = G.invlogxp1(G.mul(model.w_in, x));
+  for (i = 0; i < nHidden; i++) {
+    out = G.invlogxp1(G.mul(model['w_'+i], out));
+  }
+    break;	
   default:
     console.log(nonlinfn +" This non linearity function not implemented yet.");
 }

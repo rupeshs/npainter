@@ -7,6 +7,9 @@ var painterWorker;
 var imageData;
 var stylefn;
 $(document).ready(function(){
+	
+	
+	
 	stylefn="tanh";
    $("#styleselect").imagepicker({
   
@@ -53,10 +56,26 @@ $(document).ready(function(){
   case "invxlogx":
   $('#nneurons').val(9);
   $('#nhlayer').val(2);
-  $("#sstrenth").val('3');
-   $('#sstrenth').prop('disabled', false);
-  break;
   
+  break;
+    case "logx1":
+  $('#nneurons').val(12);
+  $('#nhlayer').val(1);
+ 
+  break;
+   case "logxp1":
+  $('#nneurons').val(8);
+  $('#nhlayer').val(2);
+ 
+  break;
+   case "tanhlog":
+  $('#nneurons').val(9);
+  $('#nhlayer').val(4);
+  break;
+  case "invlogxp1":
+  $('#nneurons').val(8);
+  $('#nhlayer').val(1);
+  break;
   }
   
     }
@@ -78,7 +97,10 @@ height = element.height;
 
 function startPainting()
 {
-
+if (!window.Worker) { // Check if Browser supports the Worker api.
+	alert("Web workers not supported,please upgrade your browser.");
+	return;
+}
 $("#paintanim").show( "slide", { direction: "left" },250 );
  $("#duration").html("")	
 	if (painterWorker)
@@ -103,7 +125,11 @@ $("#paintanim").show( "slide", { direction: "left" },250 );
 	hidsz:nhidden,
 	strokestrenth:sstren
 });
-
+painterWorker.onerror = function (event) {
+            console.log(event.message, event);
+			alert(event.message);
+};
+         
 painterWorker.onmessage = function( event ){
 //Got data paint it  
 

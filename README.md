@@ -37,7 +37,9 @@ Parameters of styling network
 
 ### References
 [Neural Network Generative Art](http://blog.otoro.net/2015/06/19/neural-network-generative-art/)
+
 [The Unreasonable Effectiveness of Recurrent Neural Networks] (http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+
 [Web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 
 

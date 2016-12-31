@@ -17,12 +17,16 @@ $(document).ready(function () {
         $("#resolution").val('320x240');
          artcanvas.width = 320;
          artcanvas.height = 240;
+         width = artcanvas.width;
+         height =artcanvas.height;
 
     }
     else{
         $("#resolution").val('640x480');
          artcanvas.width = 640;
          artcanvas.height = 480;
+          width = artcanvas.width;
+         height =artcanvas.height;
     }
     $('#resolution').on('change', function () {
 
@@ -30,6 +34,8 @@ $(document).ready(function () {
         console.log(res);
         artcanvas.width = (res[0]);
         artcanvas.height = (res[1]);
+         width = artcanvas.width;
+         height =artcanvas.height;
         // alert(res[0] );
         console.log(artcanvas.width+":"+artcanvas.height)
     });

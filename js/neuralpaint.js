@@ -157,7 +157,8 @@ function neuralPaint(height, width, nnlinfn) {
  
   nonlinfn = nnlinfn;
   modl = initModel();
-
+  //console.log(width);
+ // console.log(height);
   var t0 = performance.now();
 
   for (var y = 0; y < height; y++) {

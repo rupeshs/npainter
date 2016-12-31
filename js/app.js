@@ -14,10 +14,15 @@ $(document).ready(function () {
      NProgress.configure({ trickle: false });
     if( isMobile.any())
     {
-        $("#resolution").val('300x240');
+        $("#resolution").val('320x240');
+         artcanvas.width = 320;
+         artcanvas.height = 240;
+
     }
     else{
         $("#resolution").val('640x480');
+         artcanvas.width = 640;
+         artcanvas.height = 480;
     }
     $('#resolution').on('change', function () {
 

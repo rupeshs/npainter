@@ -7,6 +7,12 @@ You can try [Npainter](https://rupeshs.github.io/npainter/)
 
 <img class="screenshots" src="img/logxex.png" >
 
+# Gallery
+High res available [here]( https://rupeshs.github.io/npainter/gallery.html)
+<img class="screenshots" src="img/paintings.jpg" >
+
+## Different non linearity functions used to generate patterns.
+
 Parameters of styling network
 
 1.Number of neurons per layer
@@ -14,11 +20,6 @@ Parameters of styling network
 2.Number of hidden layers
 
 3 Stroke strength
-# Gallery
-High res available [here]( https://rupeshs.github.io/npainter/gallery.html)
-<img class="screenshots" src="img/paintings.jpg" >
-
-## Different non linearity functions used to generate patterns.
 
 | Style         |Non linearity function | stroke strength
 | ------------- |-------------|-------------:|
@@ -34,6 +35,9 @@ High res available [here]( https://rupeshs.github.io/npainter/gallery.html)
 |<img src="img/tanhlog.png" >     | out.w[i] = Math.abs(1 / Math.tanh(m.w[i])) * m.w[i] * Math.log10(Math.abs(m.w[i]) + 8.5e-1)|  |
 |<img src="img/invlogxp1.png" >   | out.w[i] = Math.abs(1 / m.w[i]) * m.w[i] * Math.log10(Math.abs(m.w[i]) + 1e-1)|  |
 
-
+### References
+[Neural Network Generative Art](http://blog.otoro.net/2015/06/19/neural-network-generative-art/)
+[The Unreasonable Effectiveness of Recurrent Neural Networks] (http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+[Web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 
 

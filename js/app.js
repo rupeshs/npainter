@@ -145,7 +145,7 @@ function startPainting() {
 
     $('#startBtn').prop('disabled', true);
     $('#stopBtn').prop('disabled', false);
-
+    $('#resolution').prop('disabled', true);
     console.log(stylefn);
 
     var networksize = $('#nneurons').val();
@@ -182,6 +182,7 @@ function startPainting() {
                 $("#duration").html("Took " + parseInt(event.data.etime) + " seconds");
                 $('#startBtn').prop('disabled', false);
                 $('#stopBtn').prop('disabled', true);
+                $('#resolution').prop('disabled', false);
                 NProgress.done();
                 break;
             case "image":
@@ -198,6 +199,7 @@ function stopPainting() {
 
     $("#duration").html("")
     $('#startBtn').prop('disabled', false);
+    $('#resolution').prop('disabled', false);
     $('#stopBtn').prop('disabled', true);
     painterWorker.terminate();
     NProgress.done();

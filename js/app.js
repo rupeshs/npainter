@@ -3,13 +3,31 @@
 var width;
 var height;
 var ctx;
-var element;
+var artcanvas;
 var painterWorker;//Web worker for canvas painting
 var imageData;
 var stylefn;
 
 $(document).ready(function () {
     //Default
+     NProgress.configure({ showSpinner: false });
+     NProgress.configure({ trickle: false });
+    if( isMobile.any())
+    {
+        $("#resolution").val('300x240');
+    }
+    else{
+        $("#resolution").val('640x480');
+    }
+    $('#resolution').on('change', function () {
+
+        var res = this.value.split("x");
+        console.log(res);
+        artcanvas.width = (res[0]);
+        artcanvas.height = (res[1]);
+        // alert(res[0] );
+        console.log(artcanvas.width+":"+artcanvas.height)
+    });
     stylefn = "logfnex";
     $("#strength").val('2');
     //Select style
@@ -92,21 +110,21 @@ addEventListener('DOMContentLoaded', function () {
     $("#paintanim").hide();
     $('#startBtn').prop('disabled', false);
     $('#stopBtn').prop('disabled', true);
-    element = document.getElementById("nartCanvas");
-    ctx = element.getContext("2d");
-    width = element.width;
-    height = element.height;
+    artcanvas = document.getElementById("nartCanvas");
+    ctx = artcanvas.getContext("2d");
+    width = artcanvas.width;
+    height =artcanvas.height;
 
 }, false);
 
 function startPainting() {
-
+   
     if (!window.Worker) { // Check if Browser supports the Worker api.
         alert("Web workers not supported,please upgrade your browser.");
         //Nothing to do :(
         return;
     }
-
+ 
     $("#paintanim").show("slide", { direction: "left" }, 250);
     $("#duration").html("");
 
@@ -138,7 +156,7 @@ function startPainting() {
         strokestrength: sstren
     });
 
-    
+    NProgress.start() ;
     painterWorker.onerror = function (event) {
         console.log(event.message, event);
         alert(event.message);
@@ -149,13 +167,16 @@ function startPainting() {
         //Got data ffrom RNN...paint it 
         switch (event.data.status) {
             case "finished":
-                $("#paintanim").hide("slide", { direction: "right" }, 250);
+      
                 $("#duration").html("Took " + parseInt(event.data.etime) + " seconds");
                 $('#startBtn').prop('disabled', false);
                 $('#stopBtn').prop('disabled', true);
+                NProgress.done();
                 break;
             case "image":
-                ctx.putImageData(event.data.imagedata, 0, 0);
+                   ctx.putImageData(event.data.imagedata, 0, 0);
+                   NProgress.set(event.data.progress/100) ;
+                   $("#duration").html(event.data.progress+"%")
                 break;
         }
     };
@@ -164,11 +185,11 @@ function startPainting() {
 
 function stopPainting() {
 
-    $("#paintanim").hide("slide", { direction: "right" }, 250);
     $("#duration").html("")
     $('#startBtn').prop('disabled', false);
     $('#stopBtn').prop('disabled', true);
     painterWorker.terminate();
+    NProgress.done();
 
 }
 
@@ -181,5 +202,27 @@ function downloadCanvas(link, canvasId, filename) {
 
 
 document.getElementById('download').addEventListener('click', function () {
-    downloadCanvas(this, 'nartCanvas', 'neural-painting.png');
+ 
+    downloadCanvas(this, 'nartCanvas', 'neural-painting_'+stylefn+'.png');
 }, false);
+
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};

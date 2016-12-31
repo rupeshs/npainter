@@ -167,8 +167,8 @@ function neuralPaint(height, width, nnlinfn) {
       setPixel(imageData, x, y, rgb[0], rgb[1], rgb[2], 255);
 
     }
-
-    postMessage({ status: "image", imagedata: imageData });
+    var prog=Math.round((y/height)*100);
+    postMessage({ status: "image", imagedata: imageData,progress: prog});
   }
   var t1 = performance.now();
   var elTime = (t1 - t0) / 1000;
@@ -187,7 +187,7 @@ onmessage = function (event) {
       strokestrength = event.data.strokestrength;
       //Start neural painting
       neuralPaint(event.data.h, event.data.w, nonlinfn);
-      break;
+      break;0
     case "stop":
       break;
   }

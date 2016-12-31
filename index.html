@@ -9,6 +9,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/image-picker.css">
+	<link rel="stylesheet" href="css/nprogress.css">
+	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -37,8 +39,8 @@
     </nav>
 	
 	<div class="container">
-		<!-- Place this tag where you want the button to render. -->
-<a class="github-button" href="https://github.com/rupeshs/npainter/fork" data-style="mega" data-count-href="/rupeshs/npainter/network" data-count-api="/repos/rupeshs/npainter#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork rupeshs/npainter on GitHub">Fork</a>
+	<center>	<h3>Artistic patterns using Neural networks</h3>	</center>
+
 		<div class="well">
 			<form class="form-inline">
 				<div class="form-group">
@@ -50,8 +52,8 @@
 <input class="form-control" type="number" value="1" min="1" max="32" id="nhlayer">
 </div>
 
+<label for="strength">Stroke strength:</label>
 <div class="form-group" style="margin:5px">
-<label for="sstrenth">Stroke strength:</label>
 <select class="form-control" id="strength">
     <option value='1'>1</option>
     <option value='2'>2</option>
@@ -65,11 +67,23 @@
 	  <option value='10'>10</option>
   </select>
 </div>
+<label for="resolution">Resolution:</label>
+<div class="form-group" style="margin:5px">
+	<select class="form-control" id="resolution">
+    <option value='300x240'>300x240</option>
+    <option value='640x480'>640x480</option>
+		<option value='800x600'>800x600</option>
+		<option value='1024x600'>1024x600</option>
+		<option value='1024x768'>1024x768</option>
+		</select>
+	</div>	
 </form>
 <b>Select style:</b>
+<small> (<i class="fa fa-info-circle" aria-hidden="true"></i> Neural network will paint using the selected style)</small>
 <div style="margin-top:10px;">
-
+	
 <select id="styleselect" class="image-picker show-html">
+	
 	<option data-img-src='img/logfnex.png' value='logfnex'></option>
 	<option data-img-src='img/logfn.png' value='logfn'></option>
 	<option data-img-src='img/tanh.png' value='tanh'></option>
@@ -83,24 +97,27 @@
 	<option data-img-src='img/tanhlog.png' value='tanhlog'></option>
 	<option data-img-src='img/invlogxp1.png' value='invlogxp1'></option>
 	</select>
+
 </div>
+
 <div style="margin-top:5px;">
 <button class="btn btn-success" disabled=true id="startBtn" onclick="startPainting()"><i class="fa fa-paint-brush" aria-hidden="true"></i> Start Painting</button>
 <button class="btn btn-danger"  disabled=true id="stopBtn" onclick="stopPainting()"><i class="fa fa-ban" aria-hidden="true"></i> Stop</button>
-<a class="btn btn-primary" id="download"><i class="fa fa-download" aria-hidden="true"></i> </a>
-<img id="paintanim" src="img/painting.gif"></img><span class="label label-primary" id="duration"></span>
+
+<a class="btn btn-primary" id="download" style="margin:10px;"><i class="fa fa-download" aria-hidden="true"></i> Download painting</a>
+</img><span class="label label-primary" id="duration"></span>
 
 </div>
 </div>
 <center>
-	<canvas id="nartCanvas" width="640" height="480" style="box-shadow: 0 0 8px #888;border: rgba(255,255,255,.23) solid 12px;;margin-top:15px;background-clip: padding-box;"> Your browser does not support the HTML5 canvas tag.</canvas><br>
+	<canvas id="nartCanvas" width="1024" height="768" style="box-shadow: 0 0 8px #888;border: rgba(255,255,255,.23) solid 12px;;margin-top:15px;background-clip: padding-box;"> Your browser does not support the HTML5 canvas tag.</canvas><br>
 
 </center>
 
 </div>
 <footer class="footer">
 	<div class="container">
-		<p class="text-muted"> ©2016 <a href="https://github.com/rupeshs">Rupesh Sreeraman</a></p>
+	 <p>&copy; 2017<a href="https://github.com/rupeshs"> Rupesh Sreeraman</a>
 	</div>
 </footer>
 
@@ -111,6 +128,7 @@
 	crossorigin="anonymous"></script>
 <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <script src="js/image-picker.js"></script>
+<script src="js/nprogress.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 

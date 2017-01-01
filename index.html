@@ -1,8 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
 
-	<title>Npainter | Neural painting in browser </title>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Npainter | Artistic patterns using recurrent neural network </title>
+	<meta name="description" content="Npainter - Artistic patterns using neural network">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<meta name="author" content="Rupesh Sreeraman">
+	<meta name=Keywords content="style,nerual,pattern,neural painter,rnn" />
+	<link rel="shortcut icon" href="img/favicon.ico">
+
+	<meta property="og:title" content="Npainter" />
+  <meta property="og:site_name" content="Npainter" />
+  <meta property="og:description" content="Artistic patterns using recurrent neural network" />
+   <meta property="og:image" content="http://neuralstyler.sourceforge.net/img/og_image.png" />
+
 	<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 		crossorigin="anonymous">=
@@ -11,6 +28,7 @@
 	<link rel="stylesheet" href="css/image-picker.css">
 	<link rel="stylesheet" href="css/nprogress.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+	
 </head>
 
 <body>
@@ -79,7 +97,7 @@
 	</div>	
 </form>
 <b>Select style:</b>
-<small> (<i class="fa fa-info-circle" aria-hidden="true"></i> Neural network will paint using the selected style)</small>
+<small> (<i class="fa fa-info-circle" aria-hidden="true"></i> Neural network will paint similar pattern)</small>
 <div style="margin-top:10px;">
 	
 <select id="styleselect" class="image-picker show-html">
@@ -100,9 +118,9 @@
 
 </div>
 
-<div style="margin-top:5px;">
-<button class="btn btn-success" disabled=true id="startBtn" onclick="startPainting()"><i class="fa fa-paint-brush" aria-hidden="true"></i> Start Painting</button>
-<button class="btn btn-danger"  disabled=true id="stopBtn" onclick="stopPainting()"><i class="fa fa-ban" aria-hidden="true"></i> Stop</button>
+<div style="margin:10px;" class="btn-group">
+<button class="btn btn-success btn-lg" disabled=true id="startBtn" onclick="startPainting()"><i class="fa fa-paint-brush" aria-hidden="true"></i> Start Painting</button>
+<button class="btn btn-danger btn-lg"  disabled=true id="stopBtn" onclick="stopPainting()"><i class="fa fa-ban" aria-hidden="true"></i> Cancel</button>
 
 
 </div>

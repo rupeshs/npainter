@@ -131,7 +131,7 @@ addEventListener('DOMContentLoaded', function () {
 function startPainting() {
    
     if (!window.Worker) { // Check if Browser supports the Worker api.
-        alert("Web workers not supported,please upgrade your browser.");
+        alert("Ohh snap! Web workers not supported,please upgrade your browser.");
         //Nothing to do :(
         return;
     }
@@ -188,7 +188,7 @@ function startPainting() {
             case "image":
                    ctx.putImageData(event.data.imagedata, 0, 0);
                    NProgress.set(event.data.progress/100) ;
-                   $("#duration").html(event.data.progress+"%")
+                   $("#duration").html('Painting...'+event.data.progress+"%")
                 break;
         }
     };

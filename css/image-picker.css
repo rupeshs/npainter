@@ -28,7 +28,7 @@ ul.thumbnails.image_picker_selector {
       ul.thumbnails.image_picker_selector li .thumbnail img {
         -webkit-user-drag: none; }
     ul.thumbnails.image_picker_selector li .thumbnail.selected {
-      background: orange; 
-	  box-shadow: 0 0 6px orange;
+      background: rgba(0,0,0,0.8); 
+	  box-shadow: 0 0 6px black;
 	 
 	  }

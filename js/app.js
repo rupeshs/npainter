@@ -22,9 +22,9 @@ $(document).ready(function () {
 
     }
     else{
-        $("#resolution").val('640x480');
-         artcanvas.width = 640;
-         artcanvas.height = 480;
+        $("#resolution").val('800x600');
+         artcanvas.width = 800;
+         artcanvas.height = 600;
           width = artcanvas.width;
          height =artcanvas.height;
     }

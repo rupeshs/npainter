@@ -24,8 +24,8 @@ Parameters of styling network
 
 Full implementation [neuralpaint.js] (https://github.com/rupeshs/npainter/blob/master/js/neuralpaint.js)
 
-| Style         |Non linearity function | stroke strength
-| ------------- |-------------|-------------:|
+| Style         |Non linearity function | Stroke Strength
+| ------------- |-------------|:-------------|
 |<img src="img/logfnex.png" >     | out.w[i] = Math.log10(Math.abs(m.w[i]) + sstrength) | 1e-1 to 1e-10|
 |<img src="img/tanh.png" >        | out.w[i] = Math.tanh(Math.abs(m.w[i])) | |
 |<img src="img/logxp1.png" >      | out.w[i] = Math.log(Math.abs(m.w[i]) + 0.1) |  |

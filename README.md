@@ -3,7 +3,8 @@
 Artistic patterns using recurrent neural network.
 We use recurrent neural network that takes coordinate (x, y) and outputs RBG value to generate the patterns.
 We have added non linearity functions to [recurrent.js](https://github.com/karpathy/recurrentjs)  and  by randomly assigning weights to neural network.
-You can try [Npainter](https://rupeshs.github.io/npainter/)
+
+Try [Npainter AI](https://rupeshs.github.io/npainter/)
 
 <img class="screenshots" src="img/logxex.png" >
 
@@ -20,6 +21,8 @@ Parameters of styling network
 2.Number of hidden layers
 
 3 Stroke strength
+
+Full implementation [neuralpaint.js] (https://github.com/rupeshs/npainter/blob/master/js/neuralpaint.js)
 
 | Style         |Non linearity function | stroke strength
 | ------------- |-------------|-------------:|

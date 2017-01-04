@@ -159,7 +159,7 @@ function neuralPaint(height, width, nnlinfn) {
   modl = initModel();
   //console.log(width);
  // console.log(height);
-  var t0 = performance.now();
+  var t0 = Date.now();
 
   for (var y = 0; y < height; y++) {
     for (var x = 0; x < width; x++) {
@@ -171,7 +171,7 @@ function neuralPaint(height, width, nnlinfn) {
     var prog=Math.round((y/height)*100);
     postMessage({ status: "image", imagedata: imageData,progress: prog});
   }
-  var t1 = performance.now();
+  var t1 = Date.now();
   var elTime = (t1 - t0) / 1000;
   postMessage({ status: "finished", etime: elTime });
 }

@@ -118,7 +118,7 @@ $(document).ready(function () {
 
 addEventListener('DOMContentLoaded', function () {
 
-    $("#paintanim").hide();
+
     $('#startBtn').prop('disabled', false);
     $('#stopBtn').prop('disabled', true);
     artcanvas = document.getElementById("nartCanvas");
@@ -136,7 +136,7 @@ function startPainting() {
         return;
     }
  
-    $("#paintanim").show("slide", { direction: "left" }, 250);
+   
     $("#duration").html("");
 
     if (painterWorker) {
